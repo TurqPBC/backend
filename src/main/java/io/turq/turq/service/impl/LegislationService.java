@@ -62,7 +62,7 @@ public class LegislationService implements ILegislationService {
         try {
             UserEntity author = userService.findByEmail(authorEmail);
             ContestEntity contest = contestService.findById(req.getContestId());
-            LegislationEntity legislation = new LegislationEntity(req.getTitle(), req.getChapter(), req.getSection(), req.getAccomplishes(), req.getTerms(), req.getPurpose(), req.getProvisions(), req.getExceptions(), req.getOther(), author, contest);
+            LegislationEntity legislation = new LegislationEntity(req.getTitle(), req.ref(), author, contest);
             retLegislation = repository.save(legislation);
         } catch (DataIntegrityViolationException e){
             System.out.println("PSQL Data Integrity Violation Exception: " + e.getMessage());
